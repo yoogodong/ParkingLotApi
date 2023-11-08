@@ -37,5 +37,20 @@ namespace ParkingLotApiTest.Controllers
             Assert.Equal(HttpStatusCode.BadRequest,resp.StatusCode);
 
         }
+        [Fact]
+        public async void Should_create_ok()
+        {
+            ParkingLot newLot = new ParkingLot()
+            {
+                Name = "1",
+                Capacity = 2,
+                Location = "Beijing"
+            };
+
+            HttpResponseMessage resp = await httpClient.PostAsJsonAsync(url, newLot);
+
+            Assert.Equal(HttpStatusCode.Created,resp.StatusCode);
+            
+        }
     }
 }

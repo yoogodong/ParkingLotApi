@@ -7,6 +7,10 @@ namespace ParkingLotApi.Services
     {
         private readonly ParkingLotRepository repository;
 
+        public ParkingLotService(ParkingLotRepository repository)
+        {
+            this.repository = repository;
+        }
 
         public async Task<string> Create(ParkingLot lot)
         {
