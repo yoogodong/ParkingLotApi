@@ -20,16 +20,8 @@ namespace ParkingLotApi.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(ParkingLot parkingLot)
         {
-            try
-            {
                 string id = await service.Create(parkingLot);
                 return new CreatedResult(nameof(Create), id);
-            }
-            catch (ArgumentException e)
-            {
-                return new BadRequestResult();
-            }
-            
         }
     }
 }
