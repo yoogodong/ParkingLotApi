@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using ParkingLotApi;
+using ParkingLotApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace ParkingLotApiTest.Controllers
         }
 
         [Fact]
-        public async Task Test1Async()
+        public async void Test1Async()
         {
             HttpResponseMessage resp = await httpClient.GetAsync("/WeatherForecast");
 
@@ -31,5 +32,6 @@ namespace ParkingLotApiTest.Controllers
             //List<WeatherForecast>? weatherForecasts = await resp.Content.ReadFromJsonAsync<List<WeatherForecast>>();
             //Assert.Equal(weatherForecast, weatherForecasts[0]);
         }
+
     }
 }
