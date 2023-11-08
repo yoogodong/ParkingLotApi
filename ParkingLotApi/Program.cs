@@ -16,7 +16,8 @@ builder.Services.AddSwaggerGen();
 
 
 
-builder.Services.AddSingleton<IMongoClient>(new MongoClient("mongodb://localhost:27017"));
+MongoClient mongoClient = new MongoClient(builder.Configuration.GetConnectionString("MongoDB"));
+builder.Services.AddSingleton<IMongoClient>(mongoClient);
 builder.Services.AddSingleton<ParkingLotRepository>();
 builder.Services.AddSingleton<ParkingLotService>();
 builder.Services.AddSingleton<ParkingLotsController>();
@@ -24,7 +25,6 @@ builder.Services.AddSingleton<ParkingLotsController>();
 var app = builder.Build();
 
 
-//MongoClient mongoClient = new MongoClient(app.Configuration.GetConnectionString("MongoDB"));
 
 
 // Configure the HTTP request pipeline.

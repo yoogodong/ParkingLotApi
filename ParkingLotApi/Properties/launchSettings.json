@@ -36,10 +36,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    },
-    "AllowedHosts": "*",
-    "ConnectionStrings": {
-      "MongoDB": "mongodb://localhost:27017"
     }
   }
 }
