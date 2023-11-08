@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using ParkingLotApi.Models;
 
 namespace ParkingLotApi.Repositories
@@ -6,10 +7,11 @@ namespace ParkingLotApi.Repositories
     public class ParkingLotRepository
     {
         private IMongoCollection<ParkingLot> parkingLots; 
-        public ParkingLotRepository(IMongoClient mongo)
+        public ParkingLotRepository(IOptions<MongoSetttings> settings)
         {
-            IMongoDatabase mongoDatabase = mongo.GetDatabase("AFS");
-            parkingLots = mongoDatabase.GetCollection<ParkingLot>("ParkingLot");
+            MongoClient mongo = new MongoClient(settings.Value.Url);
+            IMongoDatabase mongoDatabase = mongo.GetDatabase(settings.Value .Db);
+            parkingLots = mongoDatabase.GetCollection<ParkingLot>(settings.Value.Document);
         }
 
         public async Task<string> Create(ParkingLot lot)

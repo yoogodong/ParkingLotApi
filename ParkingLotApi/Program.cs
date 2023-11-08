@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using ParkingLotApi.Controllers;
 using ParkingLotApi.Filters;
+using ParkingLotApi.Models;
 using ParkingLotApi.Repositories;
 using ParkingLotApi.Services;
 
@@ -16,11 +17,11 @@ builder.Services.AddSwaggerGen();
 
 
 
-MongoClient mongoClient = new MongoClient(builder.Configuration.GetConnectionString("MongoDB"));
-builder.Services.AddSingleton<IMongoClient>(mongoClient);
+builder.Services.Configure<MongoSetttings>(builder.Configuration.GetSection("MongoDB"));
+//MongoClient mongoClient = new MongoClient(builder.Configuration.GetConnectionString("MongoDB"));
+//builder.Services.AddSingleton<IMongoClient>(mongoClient);
 builder.Services.AddSingleton<ParkingLotRepository>();
 builder.Services.AddSingleton<ParkingLotService>();
-builder.Services.AddSingleton<ParkingLotsController>();
 
 var app = builder.Build();
 
